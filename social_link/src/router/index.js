@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/:id',
     name: 'Home',
     component: Home
   },
@@ -18,7 +18,7 @@ const routes = [
     component: Profile
   },
   {
-    path: '/search',
+    path: '/search/:id',
     name: 'Search',
     component: Search
   }

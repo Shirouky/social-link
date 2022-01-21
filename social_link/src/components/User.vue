@@ -3,16 +3,14 @@
     <v-card class="mx-auto" color="white" light>
       <v-list-item class="grow" two-line>
         <v-list-item-avatar>
-          <v-img :src="item.avatar"></v-img>
+          <v-img :src="avatar"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content class="text-left">
           <v-list-item-title class="font-weight-black">{{
             item.title
           }}</v-list-item-title>
-          <v-list-item-subtitle>
-            автор {{ item.username }}</v-list-item-subtitle
-          >
+          <v-list-item-subtitle> автор {{ username }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 

@@ -10,10 +10,7 @@
     </v-row>
     <v-row class="text-left">
       <v-col cols="2">
-        <img
-          :src="avatar"
-          style="max-width: 100%"
-        />
+        <img :src="avatar" style="max-width: 100%" />
       </v-col>
       <v-col cols="10" class="text-left">
         <p>
@@ -28,7 +25,7 @@
       </v-col>
     </v-row>
     <v-list dense nav v-for="post in posts" :key="post.id">
-      <Post :item="post" :username="user.name" :avatar="avatar"/>
+      <Post :item="post" :username="user.name" :avatar="avatar" />
     </v-list>
   </div>
 </template>
@@ -38,7 +35,7 @@ import Post from "@/components/Post.vue";
 
 export default {
   data: () => ({
-    currentId: null,
+    currentId: 2,
     user: null,
     posts: null,
     avatar: "https://randomuser.me/api/portraits/men/3.jpg",
@@ -68,6 +65,8 @@ export default {
   watch: {
     $route() {
       this.currentId = this.$route.params.id;
+      this.avatar =
+        "https://randomuser.me/api/portraits/men/" + this.currentId + ".jpg";
       this.loadUser();
       this.loadPosts();
     },
@@ -75,6 +74,8 @@ export default {
 
   mounted() {
     this.currentId = this.$route.params.id;
+    this.avatar =
+      "https://randomuser.me/api/portraits/men/" + this.currentId + ".jpg";
     this.loadUser();
     this.loadPosts();
   },
