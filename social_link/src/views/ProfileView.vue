@@ -11,7 +11,7 @@
     <v-row class="text-left">
       <v-col cols="2">
         <img
-          src="https://randomuser.me/api/portraits/men/3.jpg"
+          :src="avatar"
           style="max-width: 100%"
         />
       </v-col>
@@ -27,17 +27,25 @@
         <p>Место работы: {{ user.company.name }}</p>
       </v-col>
     </v-row>
-
-    ОСТАЛЬНОЕ СОДЕРЖИМОЕ СТРАНИЦЫ
+    <v-list dense nav v-for="post in posts" :key="post.id">
+      <Post :item="post" :username="user.name" :avatar="avatar"/>
+    </v-list>
   </div>
 </template>
 
 <script>
+import Post from "@/components/Post.vue";
+
 export default {
   data: () => ({
     currentId: null,
     user: null,
+    posts: null,
+    avatar: "https://randomuser.me/api/portraits/men/3.jpg",
   }),
+  components: {
+    Post,
+  },
   methods: {
     loadUser() {
       this.axios
@@ -46,18 +54,29 @@ export default {
           this.user = response.data;
         });
     },
+    loadPosts() {
+      this.axios
+        .get(
+          "http://jsonplaceholder.typicode.com/posts?userId=" + this.currentId
+        )
+        .then((response) => {
+          this.posts = response.data;
+        });
+    },
   },
 
   watch: {
     $route() {
       this.currentId = this.$route.params.id;
       this.loadUser();
+      this.loadPosts();
     },
   },
 
   mounted() {
     this.currentId = this.$route.params.id;
     this.loadUser();
+    this.loadPosts();
   },
 };
 </script>
