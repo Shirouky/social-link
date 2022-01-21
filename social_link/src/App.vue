@@ -13,24 +13,51 @@
           color="green"
           permanent
         >
-          <v-list-item class="px-2">
+          <v-list-item two-line class="px-2">
             <v-list-item-avatar>
               <v-img
-                src="https://randomuser.me/api/portraits/women/75.jpg"
+                src="https://randomuser.me/api/portraits/men/75.jpg"
               ></v-img>
             </v-list-item-avatar>
+
+            <v-list-item-content class="text-left">
+              <v-list-item-title class="font-weight-black"
+                >SocialLink</v-list-item-title
+              >
+              <v-list-item-subtitle>Иван Иванов</v-list-item-subtitle>
+            </v-list-item-content>
           </v-list-item>
 
-          <v-divider></v-divider>
+          <v-divider class="my-3"></v-divider>
 
-          <v-list dense nav>
-            <v-list-item v-for="item in items" :key="item.title">
+          <v-list dense nav shaped>
+            <v-list-item>
               <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon>mdi-home-outline</v-icon>
               </v-list-item-action>
 
               <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="text-left">Главная</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-action>
+                <v-icon>mdi-account-outline</v-icon>
+              </v-list-item-action>
+
+              <v-list-item-content>
+                <v-list-item-title class="text-left">Мой профиль</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-action>
+                <v-icon>mdi-account-multiple-outline</v-icon>
+              </v-list-item-action>
+
+              <v-list-item-content>
+                <v-list-item-title class="text-left">Найти друзей</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -45,7 +72,7 @@
     </v-navigation-drawer>
     <v-main class="px-12 py-3">
       <v-container fluid>
-        <router-view/>
+        <router-view />
       </v-container>
     </v-main>
   </v-app>
