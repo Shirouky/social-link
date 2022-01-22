@@ -35,7 +35,7 @@ import Post from "@/components/Post.vue";
 
 export default {
   data: () => ({
-    currentId: 2,
+    currentId: 3,
     user: null,
     posts: null,
     avatar: "https://randomuser.me/api/portraits/men/3.jpg",
@@ -58,6 +58,13 @@ export default {
         )
         .then((response) => {
           this.posts = response.data;
+          this.posts.forEach((post) => {
+            post.avatar =
+              "https://randomuser.me/api/portraits/men/" +
+              this.currentId +
+              ".jpg";
+            post.username = this.user.name;
+          });
         });
     },
   },

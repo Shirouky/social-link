@@ -32,7 +32,7 @@
       </v-navigation-drawer>
     </v-row>
     <v-main class="px-12 py-3">
-      <v-container fluid>
+      <v-container >
         <router-view />
       </v-container>
     </v-main>

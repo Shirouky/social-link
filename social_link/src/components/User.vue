@@ -1,39 +1,40 @@
 <template>
-  <div class="d-flex flex-no-wrap justify-space-between">
-    <v-card class="mx-auto" color="white" light>
-      <v-list-item class="grow" two-line>
-        <v-list-item-avatar>
-          <v-img :src="avatar"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content class="text-left">
-          <v-list-item-title class="font-weight-black">{{
-            item.title
-          }}</v-list-item-title>
-          <v-list-item-subtitle> автор {{ username }}</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-card-text class="text-h5 font-weight-bold">
-        {{ item.body }}
-      </v-card-text>
-
-      <v-card-actions>
-        <v-list-item class="grow">
-          <v-row align="center" justify="end">
-            <v-icon class="mr-1"> mdi-heart </v-icon>
-            <span class="mr-1">·</span>
-            <v-icon class="mr-1"> mdi-share-variant </v-icon>
-          </v-row>
+  <v-card light width="40vw">
+    <v-card-title class="mt-8">
+      <v-avatar size="56">
+        <img :src="user.avatar" />
+      </v-avatar>
+      <v-divider vertical class="ma-2"></v-divider>
+      <v-list width="28vw">
+        <v-list-item two-line class="px-2">
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="font-weight-black">{{
+              user.name
+            }}</v-list-item-title>
+            <v-list-item-subtitle>
+              {{ user.address.city }}</v-list-item-subtitle
+            >
+            <v-btn link :to="'/profile/' + String(user.id)"
+              class="d-flex flex-no-wrap justify-space-between ma-1"
+              outlined
+              color="green"
+              width="240"
+            >
+              <v-icon
+                >mdi-card-account-details-outline</v-icon
+              >
+              Перейти в профиль
+            </v-btn>
+          </v-list-item-content>
         </v-list-item>
-      </v-card-actions>
-    </v-card>
-  </div>
+      </v-list>
+    </v-card-title>
+  </v-card>
 </template>
 
 <script>
 export default {
   name: "Home",
-  props: ["item", "username", "avatar"],
+  props: ["user"],
 };
 </script>
