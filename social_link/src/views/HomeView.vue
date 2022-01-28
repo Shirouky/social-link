@@ -11,8 +11,8 @@ import Post from "@/components/Post.vue";
 
 export default {
   data: () => ({
-    user: null,
-    posts: null,
+    user: [],
+    posts: [],
   }),
   components: {
     Post,
@@ -28,9 +28,12 @@ export default {
             this.axios
               .get("https://jsonplaceholder.typicode.com/users/" + id)
               .then((response) => {
-                post.username = response.data.name;
-                post.avatar =
-                  "https://randomuser.me/api/portraits/men/" + id + ".jpg";
+                this.$set(post, "username", response.data.name);
+                this.$set(
+                  post,
+                  "avatar",
+                  "https://randomuser.me/api/portraits/men/" + id + ".jpg"
+                );
               });
           });
         });

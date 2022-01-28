@@ -3,12 +3,14 @@ import VueRouter from 'vue-router'
 import Home from '../views/HomeView.vue'
 import Profile from '../views/ProfileView.vue'
 import Search from '../views/SearchView.vue'
+import Login from '../views/LoginView.vue'
+import Register from '../views/RegisterView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/:id',
+    path: '/',
     name: 'Home',
     component: Home
   },
@@ -18,9 +20,19 @@ const routes = [
     component: Profile
   },
   {
-    path: '/search/:id',
+    path: '/search/',
     name: 'Search',
     component: Search
+  },
+  {
+    path: '/login/',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/register/',
+    name: 'Registration',
+    component: Register
   }
 ]
 

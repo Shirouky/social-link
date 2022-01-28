@@ -32,8 +32,8 @@
       </v-navigation-drawer>
     </v-row>
     <v-main class="px-12 py-3">
-      <v-container >
-        <router-view />
+      <v-container>
+        <router-view v-on:login="loadUser" />
       </v-container>
     </v-main>
   </v-app>
@@ -44,13 +44,13 @@ import Navigation from "@/components/Navigation.vue";
 
 export default {
   data: () => ({
-    currentId: 3,
-    user: null,
-    avatar: "https://randomuser.me/api/portraits/men/" + 3 + ".jpg",
+    currentId: 0,
+    user: "",
+    avatar: "https://randomuser.me/api/portraits/men/" + 0 + ".jpg",
     items: [
-      ["mdi-home-outline", "Главная", "/3"],
-      ["mdi-account-outline", "Мой профиль", "/profile/3"],
-      ["mdi-account-multiple-outline", "Найти друзей", "/search/3"],
+      ["mdi-home-outline", "Главная", "/"],
+      ["mdi-account-outline", "Мой профиль", "/profile/"],
+      ["mdi-account-multiple-outline", "Найти друзей", "/search/"],
     ],
   }),
   components: {
@@ -62,6 +62,9 @@ export default {
         .get("https://jsonplaceholder.typicode.com/users/" + this.currentId)
         .then((response) => {
           this.user = response.data;
+          this.items[0][2] = "/" + this.currentId;
+          this.items[1][2] = "/profile/" + this.currentId;
+          this.items[2][2] = "/search/" + this.currentId;
         });
     },
   },

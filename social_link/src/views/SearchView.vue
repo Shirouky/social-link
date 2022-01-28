@@ -16,7 +16,7 @@ import User from "@/components/User.vue";
 export default {
   data: () => ({
     currentId: 2,
-    users: null,
+    users: [],
   }),
   components: {
     User,
@@ -31,9 +31,7 @@ export default {
             user.avatar =
               "https://randomuser.me/api/portraits/men/" + user.id + ".jpg";
           });
-                  console.log(this.users)
         });
-
     },
   },
 
