@@ -20,8 +20,8 @@
         <p>
           E-mail: <a href="user.email">{{ user.email }}</a>
         </p>
-        <p>Город: {{ user.address.city }}</p>
-        <p>Место работы: {{ user.company.name }}</p>
+        <p>Город: {{ user.city }}</p>
+        <p>Место работы: {{ user.company }}</p>
       </v-col>
     </v-row>
     <v-list dense nav v-for="post in posts" :key="post.id">
@@ -38,7 +38,7 @@ export default {
     currentId: 3,
     user: "",
     posts: [],
-    avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+    avatar: "",
   }),
   components: {
     Post,
@@ -46,28 +46,34 @@ export default {
   methods: {
     loadUser() {
       this.axios
-        .get("https://jsonplaceholder.typicode.com/users/" + this.currentId)
+        .get(
+          "https://61f41a9710f0f7001768c80c.mockapi.io/users?id=" +
+            this.currentId
+        )
         .then((response) => {
-          this.user = response.data;
+          this.user = response.data[0];
+          console.log(this.user);
         });
     },
     loadPosts() {
       this.axios
         .get(
-          "http://jsonplaceholder.typicode.com/posts?userId=" + this.currentId
+          "https://61f41a9710f0f7001768c80c.mockapi.io/posts?userId=" +
+            this.currentId
         )
         .then((response) => {
-          this.posts = response.data;
-          this.posts.forEach((post) => {
-            this.$set(
-              post,
-              "avatar",
+          const more_data = {
+            avatar:
               "https://randomuser.me/api/portraits/men/" +
-                this.currentId +
-                ".jpg"
-            );
-            this.$set(post, "username", this.user.name);
-          });
+              this.currentId +
+              ".jpg",
+            username: this.user.name,
+          };
+          var data = response.data;
+          for (var index in data) {
+            data[index] = Object.assign(data[index], more_data);
+          }
+          this.posts = data;
         });
     },
   },

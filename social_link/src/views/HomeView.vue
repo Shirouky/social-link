@@ -20,22 +20,29 @@ export default {
   methods: {
     loadPosts() {
       this.axios
-        .get("http://jsonplaceholder.typicode.com/posts")
+        .get("https://61f41a9710f0f7001768c80c.mockapi.io/posts")
         .then((response) => {
-          this.posts = response.data;
-          this.posts.forEach((post) => {
-            var id = post.userId;
+          var data = response.data;
+          for (let i = 1; i < 3; i++) {
+            var more_data = [];
             this.axios
-              .get("https://jsonplaceholder.typicode.com/users/" + id)
-              .then((response) => {
-                this.$set(post, "username", response.data.name);
-                this.$set(
-                  post,
-                  "avatar",
-                  "https://randomuser.me/api/portraits/men/" + id + ".jpg"
-                );
+              .get("https://61f41a9710f0f7001768c80c.mockapi.io/users?id=" + i)
+              .then((resp) => {
+                const data = resp.data[0];
+                const more_data_id = {
+                  avatar: data.avatar,
+                  username: data.name,
+                };
+                more_data[i] = more_data_id;
               });
-          });
+          }
+          for (var index in data) {
+            data[index] = Object.assign(
+              data[index],
+              more_data[data[index].userId - 1]
+            );
+          }
+          this.posts = data;
         });
     },
   },

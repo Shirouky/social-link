@@ -12,7 +12,7 @@
               user.name
             }}</v-list-item-title>
             <v-list-item-subtitle>
-              {{ user.address.city }}</v-list-item-subtitle
+              {{ user.city }}</v-list-item-subtitle
             >
             <v-btn link :to="'/profile/' + String(user.id)"
               class="d-flex flex-no-wrap justify-space-between ma-1"

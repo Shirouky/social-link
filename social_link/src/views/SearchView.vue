@@ -15,7 +15,7 @@ import User from "@/components/User.vue";
 
 export default {
   data: () => ({
-    currentId: 2,
+    currentId: 0,
     users: [],
   }),
   components: {
@@ -24,13 +24,9 @@ export default {
   methods: {
     loadUsers() {
       this.axios
-        .get("https://jsonplaceholder.typicode.com/users")
+        .get("https://61f41a9710f0f7001768c80c.mockapi.io/users")
         .then((response) => {
           this.users = response.data;
-          this.users.forEach((user) => {
-            user.avatar =
-              "https://randomuser.me/api/portraits/men/" + user.id + ".jpg";
-          });
         });
     },
   },
@@ -44,6 +40,7 @@ export default {
   },
 
   mounted() {
+
     this.currentId = this.$route.params.id;
     this.avatar =
       "https://randomuser.me/api/portraits/men/" + this.currentId + ".jpg";

@@ -20,7 +20,7 @@
             <v-list-item-title class="font-weight-black"
               >SocialLink</v-list-item-title
             >
-            <v-list-item-subtitle>{{ user.name }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{ name }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
@@ -31,10 +31,8 @@
         </v-list>
       </v-navigation-drawer>
     </v-row>
-    <v-main class="px-12 py-3">
-      <v-container>
+    <v-main>
         <router-view v-on:login="loadUser" />
-      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -45,12 +43,13 @@ import Navigation from "@/components/Navigation.vue";
 export default {
   data: () => ({
     currentId: 0,
-    user: "",
-    avatar: "https://randomuser.me/api/portraits/men/" + 0 + ".jpg",
+    name: "",
+    avatar: "",
     items: [
       ["mdi-home-outline", "Главная", "/"],
       ["mdi-account-outline", "Мой профиль", "/profile/"],
       ["mdi-account-multiple-outline", "Найти друзей", "/search/"],
+      ["mdi-chat-outline", "Чат", "/chat/"],
     ],
   }),
   components: {
@@ -59,12 +58,16 @@ export default {
   methods: {
     loadUser() {
       this.axios
-        .get("https://jsonplaceholder.typicode.com/users/" + this.currentId)
+        .get(
+          "https://61f41a9710f0f7001768c80c.mockapi.io/users?id=" +
+            this.currentId
+        )
         .then((response) => {
-          this.user = response.data;
-          this.items[0][2] = "/" + this.currentId;
+          this.name = response.data[0].name;
+          this.items[0][2] = "/";
           this.items[1][2] = "/profile/" + this.currentId;
           this.items[2][2] = "/search/" + this.currentId;
+          this.items[3][2] = "/chat/" + this.currentId;
         });
     },
   },

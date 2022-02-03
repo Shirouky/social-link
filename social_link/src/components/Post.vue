@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-no-wrap justify-space-between">
-    <v-card class="mx-auto" color="white" light>
+    <v-card  color="white" light>
       <v-list-item class="grow" two-line>
         <v-list-item-avatar>
           <v-img :src="item.avatar"></v-img>

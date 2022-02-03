@@ -5,6 +5,7 @@ import Profile from '../views/ProfileView.vue'
 import Search from '../views/SearchView.vue'
 import Login from '../views/LoginView.vue'
 import Register from '../views/RegisterView.vue'
+import Chat from '../views/ChatView.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +21,7 @@ const routes = [
     component: Profile
   },
   {
-    path: '/search/',
+    path: '/search/:id',
     name: 'Search',
     component: Search
   },
@@ -33,6 +34,11 @@ const routes = [
     path: '/register/',
     name: 'Registration',
     component: Register
+  },
+  {
+    path: '/chat/:id',
+    name: 'Chat',
+    component: Chat
   }
 ]
 
