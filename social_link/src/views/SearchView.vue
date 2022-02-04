@@ -26,6 +26,7 @@ export default {
       this.axios
         .get("https://61f41a9710f0f7001768c80c.mockapi.io/users")
         .then((response) => {
+          console.log(process.env.VUE_ID)
           this.users = response.data;
         });
     },
@@ -33,6 +34,7 @@ export default {
 
   watch: {
     $route() {
+      
       this.avatar =
         "https://randomuser.me/api/portraits/men/" + this.currentId + ".jpg";
       this.loadUsers();

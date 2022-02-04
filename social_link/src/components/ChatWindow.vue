@@ -15,7 +15,7 @@
       <button>
         <img
           src="/img/send.png"
-          @click="$emit('send-data', { text, author })"
+          @click="$emit('send-data', { text })"
         />
       </button>
     </div>

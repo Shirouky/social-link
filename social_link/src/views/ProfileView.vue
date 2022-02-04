@@ -52,7 +52,6 @@ export default {
         )
         .then((response) => {
           this.user = response.data[0];
-          console.log(this.user);
         });
     },
     loadPosts() {
